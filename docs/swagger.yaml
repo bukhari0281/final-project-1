@@ -1,0 +1,192 @@
+basePath: /api/v1
+definitions:
+  models.Kegiatan:
+    properties:
+      jam_kegiatan:
+        type: string
+      nama_kegiatan:
+        type: string
+    type: object
+  models.Todos:
+    properties:
+      id:
+        type: integer
+      kegiatan:
+        items:
+          $ref: '#/definitions/models.Kegiatan'
+        type: array
+      name:
+        type: string
+      tanggal:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /list-todos/create-todos:
+    post:
+      consumes:
+      - application/json
+      description: Create A new Todos
+      parameters:
+      - description: Create Todos
+        in: body
+        name: todos
+        required: true
+        schema:
+          $ref: '#/definitions/models.Todos'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Create Todos
+      tags:
+      - Todos
+  /list-todos/delete-todos/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete Todos
+      parameters:
+      - description: get todo Id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Delete Todos
+      tags:
+      - Todos
+  /list-todos/todos:
+    get:
+      consumes:
+      - application/json
+      description: Get All Todos
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Get All Todos
+      tags:
+      - Todos
+  /list-todos/todos/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get Todo By Id
+      parameters:
+      - description: get todo Id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Get Todo By Id
+      tags:
+      - Todos
+  /list-todos/update-todos/{id}:
+    put:
+      consumes:
+      - application/json
+      description: Update Todos
+      parameters:
+      - description: get todo Id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Update Todos
+        in: body
+        name: todos
+        required: true
+        schema:
+          $ref: '#/definitions/models.Todos'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Update Todos
+      tags:
+      - Todos
+swagger: "2.0"
